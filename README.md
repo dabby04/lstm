@@ -8,16 +8,15 @@ The baselines were reproduced and documented. The improvement task focuses on th
 
 ---
 
-## Repository Structure
+## Structure
 
 ```
-├── README.md                          # This file — project overview
 ├── results.md                         # Benchmark tables and experiment outcomes
 ├── discussion.md                      # Written answers and analysis (Task 4)
 │
-├── timeseries_weather_forecasting.ipynb # Task 1 — LSTM baseline notebook
+├── timeseries_weather_forecasting.ipynb # Task 1: LSTM baseline notebook
 │
-└── lstm_experiments.ipynb             # Task 2 — LSTM incremental experiments
+└── lstm_experiments.ipynb             # Task 2: LSTM incremental experiments
 ```
 
 ---
