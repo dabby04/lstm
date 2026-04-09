@@ -130,7 +130,7 @@ Task 2 is implemented in [`lstm_experiments.ipynb`](lstm_experiments.ipynb). Tra
 
 #### Loss curves (training vs. validation)
 
-The baseline stays well behaved: both losses drop and stay close. Exp 1 shows the gap opening—training drops but validation worsens. Exp 2 looks like the baseline again (both curves improve together). Exp 3 is similar to Exp 2, with a small validation penalty.
+The baseline stays well behaved: both losses drop and stay close. Exp 1 shows the gap opening, training drops but validation worsens. Exp 2 looks like the baseline again (both curves improve together). Exp 3 is similar to Exp 2, with a small validation penalty.
 
 | Baseline | Exp 1 (64 units) |
 |:--------:|:----------------:|
