@@ -1,8 +1,31 @@
-# Time Series Modelling with Deep Learning: Forecasting using LSTM
+# Time Series Modelling with Deep Learning: Transformer Classification & LSTM Forecasting
 
 ## Project Overview
 
 This project follows **CMPE 401 Instructor-defined Project 2** (see [`CMPE 401-Instructor-defined Project 2.pdf`](CMPE%20401-Instructor-defined%20Project%202.pdf) in this repository). It explores deep learning for time series: **Task 1** reproduces two official Keras baselines (LSTM forecasting and Transformer classification), and **Task 2** applies three incremental architectural changes to the LSTM forecaster on the Jena Climate dataset, with results and written discussion documented below and in [`results.md`](results.md) and [`discussion.md`](discussion.md).
+
+---
+
+## Reproducing this project (Google Colab)
+
+These notebooks were run in **Google Colab**. You do not need a local GPU to reproduce the workflows; a Colab **CPU** runtime is enough for the baselines at modest epoch counts, though a **GPU** runtime speeds up training.
+
+1. **Get the notebooks**  
+   - Clone this repository or download the `.ipynb` files from GitHub, **or**  
+   - In Colab: **File -> Upload notebook** and select the file from your machine.
+
+2. **Open the notebook** and set the runtime (**Runtime -> Change runtime type**). Choose **GPU** if you want faster training (recommended for the Transformer and longer LSTM runs).
+
+3. **Run in order**  
+   - **Task 1 — FordA Transformer:** [`timeseries_classification_transformer.ipynb`](timeseries_classification_transformer.ipynb) - runs end to end; data is fetched inside the notebook as in the Keras example.  
+   - **Task 1 — Jena LSTM:** [`timeseries_weather_forecasting.ipynb`](timeseries_weather_forecasting.ipynb) — downloads and preprocesses the Jena Climate dataset inside the notebook.  
+   - **Task 2 — LSTM experiments:** [`lstm_experiments.ipynb`](lstm_experiments.ipynb) — build on the same preprocessing pattern as the weather baseline.
+
+4. **Checkpoints**  
+   Notebooks that use `ModelCheckpoint` write `.weights.h5` files to the **current Colab session filesystem**. If the runtime disconnects, re-run the training cells to regenerate weights (or change paths to **Google Drive** if you want persistence).
+
+5. **Exact numbers**  
+   Metrics can differ slightly from the README tables across Colab versions, TensorFlow builds, and runtime types; the tables reflect the runs documented in the committed notebooks.
 
 ---
 
@@ -125,13 +148,15 @@ The baseline stays well behaved: both losses drop and stay close. Exp 1 shows th
 
 ### Which model did you find easier to understand and why?
 
-Both Task 1 notebooks were run for context. For this project, the **LSTM weather forecaster** was easier to use end to end: it matched the **forecasting** goal, the loss curves were straightforward, and each Task 2 change boiled down to one validation MSE number. The **Transformer** notebook was still useful, but repurposing a **classification** model for the Jena setup would have added extra design and debugging, so the LSTM path was the better fit for Task 2.
+Both baselines were reproduced as part of Task 1, which provided direct context for comparing the two approaches. I considered evaluating the Transformer classification approach further, but for this project, LSTM forecasting was easier to execute end-to-end because the setup matched the forecasting objective more directly, training behavior was easier to interpret, and results were more straightforward to compare across experiments.
+
+The Transformer setup was still useful to review, but adapting a classification-oriented architecture to this forecasting task added extra complexity that made iteration and debugging harder. On the other hand, the LSTM pipeline was more practical for this dataset and task requirements.
 
 ### What improvement did you try, and what did you learn from it?
 
-The three steps were: more hidden units (32→64), a second stacked LSTM, and half the input length (720→360). The goal was a stronger model in stages.
+Three incremental architectural modifications were made to the LSTM model: doubling the hidden units from 32 to 64, stacking a second LSTM layer, and halving the input sequence length from 720 to 360 observations. The goal was to progressively build a more capable model.
 
-None of them beat the baseline **0.1317** validation MSE. So a **bigger or deeper** network is not automatically better here: with the same training setup, the **simplest** model generalized best. That fits a common lesson—more parameters can hurt validation scores if you do not add more training time, data, or regularization to match.
+The most surprising finding was that none of the modifications improved on the baseline `val_loss` of 0.1317. Adding more units, stacking layers, and reducing sequence length all seemed like reasonable improvements, but the original simple single-layer 32-unit LSTM was already the best performing configuration. This showed that in deep learning, a simpler model is not always worse and that increasing complexity without enough training time or data can actually hurt performance.
 
 ---
 

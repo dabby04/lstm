@@ -2,7 +2,7 @@
 
 ### Which model did you find easier to understand and why?
 
-Both baselines were reproduced as part of Task 1, which provided direct context for comparing the two approaches. I considered evaluating the Transformer classification approach further, but for this project, LSTM forecasting was easier to execute end-to-end because the setup matched the forecasting objective more directly, training behavior was easier to interpret, and results were more straightforward to compare across experiments. The Transformer setup was still useful to review, but adapting a classification-oriented
+Both baselines were reproduced as part of Task 1, which provided direct context for comparing the two approaches. I considered evaluating the Transformer classification approach further, but for this project, LSTM forecasting was easier to execute end-to-end because the setup matched the forecasting objective more directly, training behavior was easier to interpret, and results were more straightforward to compare across experiments.
 
 The Transformer setup was still useful to review, but adapting a classification-oriented architecture to this forecasting task added extra complexity that made iteration and debugging harder. On the other hand, the LSTM pipeline was more practical for this dataset and task requirements.
 
