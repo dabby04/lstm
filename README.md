@@ -158,6 +158,22 @@ The most surprising finding was that none of the modifications improved on the b
 
 ---
 
+## Individual Contributions & Lessons Learned
+
+### Individual Contributions
+
+- Implemented and ran the three project notebooks, adapting the Keras examples where needed to fit the CMPE 401 Project 2 requirements.
+- Designed and carried out the incremental LSTM experiments described above, including choosing and justifying the architectural changes.
+- Collected, visualized, and summarized the experimental results in results.md, discussion.md, and the plots under images/.
+
+### Lessons Learned
+
+- Reproducibility is part of the work: even when following a published example closely (as with the Transformer baseline), environment differences can prevent you from matching reported metrics, so documenting what you actually observed is important.
+- Capacity alone is not a guarantee of improvement. The experiments reinforced that deeper or wider models need to be matched to data, training budget, and regularization, and that monitoring validation behaviour is more important than chasing lower training loss.
+- A strong, simple baseline is valuable. Starting from a well-behaved LSTM and changing one thing at a time made it much easier to interpret results and explain why some “improvements” did not actually help.
+
+---
+
 ## References
 
 - CMPE 401 — Instructor-defined Project 2 (PDF in this repo)
